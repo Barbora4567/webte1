@@ -1,0 +1,46 @@
+body {
+    font-family: "nunito";
+    background-color: #c7ffc7;
+    margin: 0;
+}
+
+header {
+    background-color: #ff3bb4;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+main {
+    width: 80%;
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+section {
+    background-color: rgb(250, 250, 250);;
+    padding: 25px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 2px dotted rgb(119, 3, 196);
+
+}
+
+img {
+    width: 300px;
+    max-width: 100%;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+}
+
+.image {
+    text-align: center;
+}
+
+@font-face {
+    font-family: "Nunito";
+    src: url(../fonts/Nunito-VariableFont_wght.woff2);
+}
