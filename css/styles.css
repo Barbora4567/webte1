@@ -36,11 +36,18 @@ footer {
     padding: 20px;
 }
 
-.image {
-    text-align: center;
-}
-
 @font-face {
     font-family: "Nunito";
     src: url(../fonts/Nunito-VariableFont_wght.woff2);
+}
+
+aside{
+    font-style: italic;
+    justify-content: center;
+}
+
+.nav {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
 }

@@ -3,67 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="favicon.png">
 
     <title>Moja stránka</title>
 
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
 
     <header>
         <h1>Moja prvá webová stránka</h1>
+        <nav id="nav">
+            <a href="#aboutme">O mne</a>
+            <a href="#interests">Moje záujmy</a>
+            <a href="#contact">Kontakt</a>
+        </nav>
     </header>
 
     <main>
-        <nav>
-            <a href="#aboutme">O mne</a>
-            <a href="#interests">Moje záujmy</a>
-            <a href="#contakt">Kontakt</a>
-        </nav>
+        
 
         <section id="aboutme">
             <h2>O mne</h2>
 
+            <img src="img/ja.jpg" alt="moja fotka" style="float: left; max-width: 120px;" loading="lazy">
+            
             <p>
-                Volám sa Barbi a študujem informatiku na <em>najelpšej škole</em>
+                Volám sa Barbora a študujem informatiku na 
+                Fakulte elektrotechniky a informatiky Slovenskej technickej 
+                univerzity v Bratislave - <em>FEI STU</em>.
+                Mojím cieľom je postupne získať zručnosti skúsenosti a
+                neustále sa zlepšovať.
             </p>
+            
 
-            <div class="image">
-                <img src="logo_fei.svg" alt="logo fei stu">
-            </div>
-
-            <p>
-                Najlepšia škola to je pretože ju tak lúbim. Má super učiteľov, super priestory, super tety na pgo, super systém, super jedáleň, super povesť. Jedine lineárna algebra nie je super, pretože tá je najviac mega-čuper. A preto idem tento predmet ešte raz.
+            <p>Informatika ma baví najmä preto, že spája kreativitu, 
+                technológie a logické myslenie. Počas štúdia sa učím 
+                programovať, vytvárať webové stránky a spoznávať rôzne 
+                oblasti moderných technológií.
             </p>
+            <aside>
+                Rob čo môžeš, s tým čo máš, tam kde si.
+            </aside>
+            
         </section>
 
         <section id="interests">
             <h2>Moje záujmy</h2>
 
             <p>
-                Myslím, že viac textu tu už snáď netreba. takže len poviem že tu je zoznam s mojími záujmi v neusporiadanom zozname. ano ano.
+                Vo voľnom čase rada:
             </p>
             <ul>
-                <li>Programovanie (duh)</li>
-                <li>LA2</li>
-                <li>Šport - fitko so Simonkou</li>
-                <li>Painting, lebo nie sme basic</li>
+                <li>Počúvam hudbu</li>
+                <li>Pozerám filmy</li>
+                <li>Trávim čas s kamarátmi</li>
             </ul>
         </section>
 
-        <section id="contakt">
+        <section id="contact">
             <h2>Kontakt</h2>
-                <p>janko@mrkvicka.sk</p>
+                <p>janko.mrkvicka@centrum.sk</p>
                 <p>0916 534 967</p>
+                <p>Javorová 27<br>
+                    987 01 Lúčna<br>
+                    Slovensko</p>
                 
         </section>
 
     </main>
 
     <footer>
-        <p>helped by Webové technológie I. -- made with <3</p>
+        <p>Webové technológie I. - 2026</p>
     </footer>
 
 </body>
