@@ -13,5 +13,7 @@ to .woff2 with https://fontsource.org/tools/converter
 obrazok olejových farieb:
 https://a.allegroimg.com/original/1105cc/fadf1f25478096fae7492e9495ad/Sada-olejovych-farieb-Phoenix-STUDIO-umelecke-hlinikove-tuby-6x120-ml
 
+# other
+https://www.tablesgenerator.com/ for table
 
 # AI

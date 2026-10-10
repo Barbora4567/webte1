@@ -4,29 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Moja stránka</title>
-
+    <title>O mne</title>
+    
+    <link rel="icon" type="image/x-icon" href="favicon.png">
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 
 <body>
 
     <header>
-        <h1>Moja prvá webová stránka</h1>
-        <nav id="nav">
-            <a href="#aboutme">O mne</a>
-            <a href="#interests">Moje záujmy</a>
-            <a href="#contact">Kontakt</a>
+        <img src="favicon.png">
+        <h1>študentka aplikovanej informatiky, zaujímajú ma webové technológie</h1>
+        <nav class="nav">
+            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation">
+                ☰
+            </button>
+            <ul class="nav__list" id="nav-menu">
+                <li><a href="index.html" class="nav__link nav__link--active">O mne</a></li>
+                <li><a href="pages/cv.html" class="nav__link">CV</a></li>
+                <li><a href="pages/workspace.html" class="nav__link">Pracovný priestor</a></li>
+                <li><a href="pages/schedule.html" class="nav__link">Rozvrh</a></li>
+                <li><a href="pages/map.html" class="nav__link">Kde ma nájdete</a></li>
+            </ul>
+            
+            
+            
+            
         </nav>
     </header>
 
     <main>
-        
-
+        <!-- <section>
+            <nav>
+                <a href="#aboutme">O mne</a>
+                <a href="#interests">Moje záujmy</a>
+                <a href="#contact">Kontakt</a>
+            </nav>
+        </section> -->
         <section id="aboutme">
             <h2>O mne</h2>
 
-            <img src="img/ja.jpg" alt="moja fotka" style="float: left; max-width: 120px;" loading="lazy">
+            <img src="img/me.jpg" alt="moja fotka" style="float: left; max-width: 120px;" loading="lazy" class="myImage">
             
             <p>
                 Volám sa Barbora a študujem informatiku na 
@@ -43,7 +61,12 @@
                 oblasti moderných technológií.
             </p>
             <aside>
-                Rob čo môžeš, s tým čo máš, tam kde si.
+                Obľúbený citát:
+                <blockquote>
+                    Rob čo môžeš, s tým čo máš, tam kde si.
+                </blockquote>
+                -Theodore Roosvelt
+                
             </aside>
             
         </section>
@@ -57,25 +80,32 @@
             <ul>
                 <li>Počúvam hudbu</li>
                 <li>Pozerám filmy</li>
+                <li>Čítam knihy</li>
                 <li>Trávim čas s kamarátmi</li>
             </ul>
         </section>
 
         <section id="contact">
             <h2>Kontakt</h2>
-                <p>janko.mrkvicka@centrum.sk</p>
-                <p>0916 534 967</p>
-                <p>Javorová 27<br>
-                    987 01 Lúčna<br>
-                    Slovensko</p>
+                <a href="mailto:janko.mrkvicka@centrum.sk">janko.mrkvicka@centrum.sk</a>
+                <a href="tel:+421916534967">+421 916 534 967</a>
+                <address>
+                    Lichnerova 112/69 
+                    903 01 Senec
+                    Slovensko
+                </address>
                 
         </section>
 
     </main>
 
     <footer>
-        <p>Webové technológie I. - 2026</p>
+        <address>
+      <p>Kontakt: <a href="mailto:barbora.mrkvicka@centrum.sk">barbora.mrkvicka@centrum.sk</a> | <a href="tel:+421916534967">+421 916 534 967</a></p>
+      <p>&copy; 2026 Barbora Moncoľová — Webové technológie I</p>
+    </address>
     </footer>
+    <script src="js/script.js"></script>
 
 </body>
 </html>
