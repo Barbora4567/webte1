@@ -1,5 +1,3 @@
-
-
 # font
 Nunito
 Designed by Vernon Adams, Cyreal, Jacques Le Bailly
@@ -10,10 +8,10 @@ from: https://fonts.google.com/specimen/Nunito/license
 to .woff2 with https://fontsource.org/tools/converter
 
 # obrazky
-obrazok olejových farieb:
-https://a.allegroimg.com/original/1105cc/fadf1f25478096fae7492e9495ad/Sada-olejovych-farieb-Phoenix-STUDIO-umelecke-hlinikove-tuby-6x120-ml
+Vlastný archív
 
-# other
-https://www.tablesgenerator.com/ for table
+# mapa
+https://www.openstreetmap.org
 
 # AI
+AI nástroje boli použité výhradne na konzultačné a edukatívne účely (vysvetlenie syntaxy, konzultácia konceptov a vyhľadávanie chýb); všetok kód a obsah autorka plne pochopila a zodpovedá za jeho funkčnosť.

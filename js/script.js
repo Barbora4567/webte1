@@ -73,35 +73,60 @@ function setupTableFilters() {
 
 function highlightCurrentLesson() {
   const now = new Date();
-  const currentDay = now.getDay(); 
+  const currentDay = now.getDay();
   const statusEl = document.getElementById("schedule-status-current");
 
   const lessons = document.querySelectorAll(".lesson");
   let foundActive = false;
+  let nextLesson = null;
+  let minDiff = Infinity;
 
-  lessons.forEach(lesson => {
+  const dayNames = ["Nedeľa", "Pondelok", "Utorok", "Streda", "Štvrtok", "Piatok", "Sobota"];
+
+  lessons.forEach((lesson) => {
     const parentTr = lesson.closest("tr");
-    const day = parseInt(parentTr.dataset.day, 10);
+    if (!parentTr) return;
 
-    if (day === currentDay) {
-      const [startH, startM] = lesson.dataset.start.split(":").map(Number);
-      const [endH, endM] = lesson.dataset.end.split(":").map(Number);
+    const dayIndex = parseInt(parentTr.dataset.day || parentTr.getAttribute("data-day"), 10);
+    const [startH, startM] = lesson.dataset.start.split(":").map(Number);
+    const [endH, endM] = lesson.dataset.end.split(":").map(Number);
 
-      const startTime = new Date(now).setHours(startH, startM, 0);
-      const endTime = new Date(now).setHours(endH, endM, 0);
+    const lessonStart = new Date(now);
+    const dayDiff = (dayIndex - currentDay + 7) % 7;
+    lessonStart.setDate(now.getDate() + dayDiff);
+    lessonStart.setHours(startH, startM, 0, 0);
 
-      if (now >= startTime && now <= endTime) {
-        lesson.classList.add("lesson--active");
-        foundActive = true;
-        if (statusEl) {
-          statusEl.textContent = `Práve prebieha: ${lesson.textContent}`;
-        }
+    const lessonEnd = new Date(lessonStart);
+    lessonEnd.setHours(endH, endM, 0, 0);
+
+    if (dayIndex === currentDay && now >= lessonStart && now <= lessonEnd) {
+      lesson.classList.add("lesson--active");
+      foundActive = true;
+      if (statusEl) {
+        statusEl.textContent = `Práve prebieha: ${lesson.textContent}`;
       }
+    }
+
+    // if lesson in future
+    const diff = lessonStart.getTime() - now.getTime();
+    if (diff > 0 && diff < minDiff) {
+      minDiff = diff;
+      nextLesson = {
+        name: lesson.textContent,
+        dayName: dayNames[dayIndex],
+        time: lesson.dataset.start,
+        isToday: dayIndex === currentDay
+      };
     }
   });
 
   if (!foundActive && statusEl) {
-    statusEl.textContent = "Práve neprebieha žiadna výučba.";
+    if (nextLesson) {
+      const dayString = nextLesson.isToday ? "dnes" : `v ${nextLesson.dayName}`;
+      statusEl.textContent = `Práve neprebieha žiadna výučba. Najbližšia hodina je ${nextLesson.name} (${dayString} o ${nextLesson.time}).`;
+    } else {
+      statusEl.textContent = "Práve neprebieha žiadna výučba a v tomto týždni už nie sú ďalšie hodiny.";
+    }
   }
 }
 
@@ -356,27 +381,10 @@ function handleCalculateDistance() {
 
   map.fitBounds(routeLine.getBounds(), { padding: [30, 30] });
 }
-/*
-function haversine(lat1, lon1, lat2, lon2){
-    let dLat = (lat2 - lat1) * Math.PI / 180.0;
-    let dLon = (lon2 - lon1) * Math.PI / 180.0;
-      
-    // convert to radiansa
-    lat1 = (lat1) * Math.PI / 180.0;
-    lat2 = (lat2) * Math.PI / 180.0;
 
-    // apply formulae
-    let a = Math.pow(Math.sin(dLat / 2), 2) + 
-                Math.pow(Math.sin(dLon / 2), 2) * 
-                Math.cos(lat1) * 
-                Math.cos(lat2);
-    let rad = 6371;
-    let c = 2 * Math.asin(Math.sqrt(a));
-    return rad * c;
 
-}*/
 function haversine(lat1, lon1, lat2, lon2) {
-  const R = 6371; // Polomer Zeme v km
+  const R = 6371;
   const dLat = ((lat2 - lat1) * Math.PI) / 180;
   const dLon = ((lon2 - lon1) * Math.PI) / 180;
 
