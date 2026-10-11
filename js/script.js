@@ -105,59 +105,295 @@ function highlightCurrentLesson() {
   }
 }
 
-// 1. WEATHER API
+//workspace hotspots
+// Pole objektov s údajmi o jednotlivých hotspotoch (min. 5)
+const workspaceHotspots = [
+  {
+    id: "usb",
+    x: "70%",
+    y: "20%",
+    title: "USB kľúč",
+    description: "USB kľúč, kde si ukladám dôležité veci alebo dokumenty na tlač."
+  },
+  {
+    id: "laptop",
+    x: "20%",
+    y: "40%",
+    title: "Laptop",
+    description: "Môj hlavný pracovný nástroj na vývoj webov a štúdium. Tu robím zadania a rozvíjam svoje počítačové schopnosti."
+  },
+  {
+    id: "water",
+    x: "90%",
+    y: "22%",
+    title: "Voda",
+    description: "Na stole mám fľašu s vodou, aby som bola pri práci hydratovaná."
+  },
+  {
+    id: "notebook",
+    x: "30%",
+    y: "80%",
+    title: "Zošit",
+    description: "Mám vždy pri sebe zošit alebo papier pre rýchle výpočty alebo poznámky."
+  },
+  {
+    id: "paints",
+    x: "90%",
+    y: "76%",
+    title: "farby",
+    description: "Vo voľnom čase rada kreslím či maľujem. Tu mám odložené farby aj skicár."
+  }
+];
 
-const weatherUrl =
-    "https://api.open-meteo.com/v1/forecast" +
-    "?latitude=48.15" +
-    "&longitude=17.11" +
-    "&current=temperature_2m,wind_speed_10m" +
-    "&timezone=auto";
+document.addEventListener("DOMContentLoaded", () => {
+  renderHotspots();
+});
 
-fetch(weatherUrl)
-    .then(response => response.json())
-    .then(data => {
+function renderHotspots() {
+  const container = document.getElementById("hotspot-container");
+  if (!container) return; 
 
-        const temperature = data.current.temperature_2m;
-        const wind = data.current.wind_speed_10m;
+  container.innerHTML = "";
 
-        document.getElementById("weather").innerHTML =
-            "Teplota: " + temperature + " °C<br>" +
-            "Vietor: " + wind + " km/h";
+  workspaceHotspots.forEach((spot) => {
+    const hotspotEl = document.createElement("div");
+    hotspotEl.className = "hotspot";
+    hotspotEl.style.setProperty("--x", spot.x);
+    hotspotEl.style.setProperty("--y", spot.y);
+    const xPercent = parseFloat(spot.x);
+    
+    if (xPercent > 50) {
+      hotspotEl.classList.add("hotspot--left");
+     }
 
-    })
-    .catch(error => {
+    const button = document.createElement("button");
+    button.className = "hotspot__dot";
+    button.type = "button";
+    button.setAttribute("aria-label", spot.title);
 
-        document.getElementById("weather").innerHTML =
-            "Nepodarilo sa načítať počasie.";
+    const panel = document.createElement("div");
+    panel.className = "hotspot__panel";
 
-        console.error(error);
+    const title = document.createElement("h2");
+    title.textContent = spot.title;
 
-    });
+    const desc = document.createElement("p");
+    desc.textContent = spot.description;
 
+    panel.appendChild(title);
+    panel.appendChild(desc);
+
+    hotspotEl.appendChild(button);
+    hotspotEl.appendChild(panel);
+
+    container.appendChild(hotspotEl);
+  });
+}
 
 // 2. LEAFLET MAP
 
-    const map = L.map("map").setView(
+let map;
+let userPoints = [];
+let mapMarkers = [];
+let routeLine = null;
+function initMap(){
+    map = L.map("map").setView(
     [48.151965, 17.072995],
     15
 );
+  L.tileLayer(
+      "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+      {
+          maxZoom: 19,
+          attribution:
+              '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          //referrerPolicy: "https://www.openstreetmap.org/copyright",
+          //referer: true,
+      }
+  ).addTo(map);
 
-L.tileLayer(
-    "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-    {
-        maxZoom: 19,
-        attribution:
-            '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        //referrerPolicy: "https://www.openstreetmap.org/copyright",
-        //referer: true,
+  // 3. MARKER
+  L.marker([48.151965, 17.072995])
+      .addTo(map)
+      .bindPopup("FEI STU Bratislava")
+      .openPopup();
+
+  L.marker([48.220909, 17.398710])
+      .addTo(map)
+      .bindPopup("Senec");
+
+  loadPointsFromLocalStorage();
+
+  map.on("click", (e) => {
+    const lat = e.latlng.lat;
+    const lng = e.latlng.lng;
+    const pointName = prompt("Zadajte názov pre toto miesto:");
+
+    if (pointName && pointName.trim() !== "") {
+      const newPoint = {
+        id: Date.now(),
+        name: pointName.trim(),
+        lat: lat,
+        lng: lng
+  };
+  userPoints.push(newPoint);
+      savePointsToLocalStorage();
+
+      addMarkerToMap(newPoint);
+      updateSelectOptions();
     }
-).addTo(map);
+  });
 
-// 3. MARKER
-L.marker([48.151965, 17.072995])
+  const calcBtn = document.getElementById("btn-calculate");
+  if (calcBtn) {
+    calcBtn.addEventListener("click", handleCalculateDistance);
+  }
+
+  const clearBtn = document.getElementById("btn-clear-points");
+  if (clearBtn) {
+    clearBtn.addEventListener("click", clearUserPoints);
+  }
+}
+
+function addMarkerToMap(point) {
+  const marker = L.marker([point.lat, point.lng])
     .addTo(map)
-    .bindPopup("FEI STU Bratislava")
-    .openPopup();
+    .bindPopup(`<b>${point.name}</b>`);
+  mapMarkers.push(marker);
+}
+function savePointsToLocalStorage() {
+  localStorage.setItem("myMapPoints", JSON.stringify(userPoints));
+}
+function loadPointsFromLocalStorage() {
+  const stored = localStorage.getItem("myMapPoints");
+  if (stored){
+    try {
+      userPoints = JSON.parse(stored);
+      userPoints.forEach((pt) => addMarkerToMap(pt));
+    } 
+    catch (err){
+      userPoints = [];}
+  }
+  updateSelectOptions();
+}
+function clearUserPoints() {
+  userPoints = [];
+  savePointsToLocalStorage();
 
+  // Odstránenie markerov z mapy
+  mapMarkers.forEach((m) => map.removeLayer(m));
+  mapMarkers = [];
 
+  if (routeLine) {
+    map.removeLayer(routeLine);
+    routeLine = null;
+  }
+
+  updateSelectOptions();
+  document.getElementById("distance-result").textContent = "";
+}
+
+function updateSelectOptions() {
+  const selectEl = document.getElementById("start-point");
+  const instructionsEl = document.getElementById("map-instructions");
+  if (!selectEl) return;
+
+  selectEl.innerHTML = '<option value="">-- Zvoľte bod na mape --</option>';
+
+  userPoints.forEach((point) => {
+    const option = document.createElement("option");
+    option.value = point.id;
+    option.textContent = point.name;
+    selectEl.appendChild(option);
+  });
+  if (instructionsEl) {
+    if (userPoints.length === 0) {
+      instructionsEl.textContent = "💡 Kliknutím kdekoľvek na mapu pridáte vlastný bod.";
+    } else {
+      instructionsEl.textContent = `Máte pridaných ${userPoints.length} vlastných bodov. Vyberte bod a cieľ nižšie.`;
+    }
+  }
+}
+
+function handleCalculateDistance() {
+  const startSelect = document.getElementById("start-point");
+  const endSelect = document.getElementById("end-point");
+  const resultEl = document.getElementById("distance-result");
+
+  if (!startSelect || !endSelect || !resultEl) return;
+  const selectedPointId = parseInt(startSelect.value, 10);
+  const targetType = endSelect.value;
+
+  const startPoint = userPoints.find((p) => p.id === selectedPointId);
+  if (!startPoint) {
+    resultEl.textContent = "Najskôr vyberte pridaný bod zo zoznamu.";
+    return;
+  }
+
+  const targetCoords = targetType === "school" 
+    ? { lat: 48.151965, lng: 17.072995, name: "FEI STU Bratislava" }
+    : { lat: 48.220909, lng: 17.398710, name: "Senec" };
+
+  const distanceKm = haversine(
+    startPoint.lat,
+    startPoint.lng,
+    targetCoords.lat,
+    targetCoords.lng
+  );
+
+  resultEl.innerHTML = `Vzdialenosť z <strong>${startPoint.name}</strong> do <strong>${targetCoords.name}</strong> je <strong>${distanceKm.toFixed(2)} km</strong>.`;
+
+  if (routeLine) {
+    map.removeLayer(routeLine);
+  }
+
+  const latlngs = [
+    [startPoint.lat, startPoint.lng],
+    [targetCoords.lat, targetCoords.lng]
+  ];
+
+  routeLine = L.polyline(latlngs, { color: "red", weight: 4 }).addTo(map);
+
+  map.fitBounds(routeLine.getBounds(), { padding: [30, 30] });
+}
+/*
+function haversine(lat1, lon1, lat2, lon2){
+    let dLat = (lat2 - lat1) * Math.PI / 180.0;
+    let dLon = (lon2 - lon1) * Math.PI / 180.0;
+      
+    // convert to radiansa
+    lat1 = (lat1) * Math.PI / 180.0;
+    lat2 = (lat2) * Math.PI / 180.0;
+
+    // apply formulae
+    let a = Math.pow(Math.sin(dLat / 2), 2) + 
+                Math.pow(Math.sin(dLon / 2), 2) * 
+                Math.cos(lat1) * 
+                Math.cos(lat2);
+    let rad = 6371;
+    let c = 2 * Math.asin(Math.sqrt(a));
+    return rad * c;
+
+}*/
+function haversine(lat1, lon1, lat2, lon2) {
+  const R = 6371; // Polomer Zeme v km
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLon = ((lon2 - lon1) * Math.PI) / 180;
+
+  const rLat1 = (lat1 * Math.PI) / 180;
+  const rLat2 = (lat2 * Math.PI) / 180;
+
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(rLat1) * Math.cos(rLat2) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const mapElement = document.getElementById("map");
+  if (mapElement) {
+    initMap();
+  }
+});

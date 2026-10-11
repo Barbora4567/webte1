@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Weather API a Leaflet</title>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kde ma nájdete</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="icon" type="image/x-icon" href="../favicon.png">
+
+    <meta name="description" content="Interaktívna mapa.">
+    <meta property="og:title" content="Mapa">
+    <meta property="og:description" content="Interaktívna mapa mojej školy/domova">
+    <meta property="og:image" content="../favicon.png">
 
     <!-- Leaflet CSS -->
     <link
@@ -18,42 +22,78 @@
 <body>
 
     <header>
+        <img src="../favicon.png" alt="BM" loading="lazy" width="64" height="64>
         <h1>študentka aplikovanej informatiky, zaujímajú ma webové technológie</h1>
-        <nav id="nav">
-            <a href="./cv.html">Cv</a>
-            <a href="./workspace.html">Praocvný priestor</a>
-            <a href="./schedule.html">Rozvrh</a>
-            <a href="./map.html">Kde ma nájdete</a>
+        <nav class="nav">
+            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation">
+                ☰
+            </button>
+            <ul class="nav__list" id="nav-menu">
+                <li><a href="../index.html" class="nav__link">O mne</a></li>
+                <li><a href="./cv.html" class="nav__link">CV</a></li>
+                <li><a href="./workspace.html" class="nav__link">Pracovný priestor</a></li>
+                <li><a href="./schedule.html" class="nav__link">Rozvrh</a></li>
+                <li><a href="./map.html" class="nav__link nav__link--active">Kde ma nájdete</a></li>
+            </ul>
         </nav>
     </header>
 
     <main>
-
         <section>
-            <h2>1. Aktuálne počasie</h2>
-
-            <div id="weather">
-                Načítavam počasie...
-            </div>
+            <h2>Návod</h2>
+            <p>Kliknutím kdekoľvek
+                na mapu pridáte vlastný bod. Následne si
+                nižšie môžete vybrať bod a cieľ pre 
+                výpočet vzdialenosti a zobrazenie trasy.</p>
         </section>
 
         <section>
-            <h2>2. Mapa</h2>
+            <h2>Mapa</h2>
+
+            
 
             <div id="map"></div>
+            <!-- 
             <p> © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors</p>
+        -->
         </section>
 
+        <section class="map-controls">
+            <h2>Výpočet vzdialenosti</h2>
+                <div class="map-controls__inputs">
+                    <label for="start-point">Vyberte váš bod:</label>
+                    <select id="start-point">
+                    <option value="">-- Zvoľte bod na mape --</option>
+                    </select>
+
+                    <label for="end-point">Cieľ:</label>
+                    <select id="end-point">
+                    <option value="school">Škola (FEI STU)</option>
+                    <option value="home">Bydlisko (Senec)</option>
+                    </select>
+
+                    <button id="btn-calculate" type="button" class="btn">Vypočítať vzdialenosť</button>
+                    <button id="btn-clear-points" type="button" class="btn btn--secondary">Vymazať moje body</button>
+                </div>
+
+      <!-- Výsledok výpočtu -->
+      <div id="distance-result"></div>
+    </section>
+
     </main>
-     <footer>
-        <p>Webové technológie I. - 2026</p>
+    <footer>
+        <address>
+      <p>Kontakt: <a href="mailto:barbora.mrkvicka@centrum.sk">barbora.mrkvicka@centrum.sk</a> | <a href="tel:+421916534967">+421 916 534 967</a></p>
+      <p>&copy; 2026 Barbora Moncoľová — Webové technológie I</p>
+      <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>
+    </address>
     </footer>
 
     <!-- Leaflet JavaScript -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
     <!-- Vlastný JavaScript -->
-    <script src="script.js"></script>
+    <script src="../js/script.js"></script>
 
 </body>
 </html>

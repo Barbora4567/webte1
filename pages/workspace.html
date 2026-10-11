@@ -3,55 +3,52 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Olejové farby</title>
+  <title>Pracovné prostredie</title>
   <link rel="stylesheet" href="../css/styles.css">
   <link rel="icon" type="image/x-icon" href="../favicon.png">
+
+  <meta name="description" content="Interaktívny prehľad môjho pracovného priestoru, ktorý využívam pri štúdiu.">
+  <meta property="og:title" content="Pracovné prostredie">
+  <meta property="og:description" content="Interaktívny obrázok môjho pracovného stola.">
+  <meta property="og:image" content="../img/my-table.jpeg">
+
 </head>
 <body>
   <header>
-        <h1>študentka aplikovanej informatiky, zaujímajú ma webové technológie</h1>
-        <nav id="nav">
-            <a href="./cv.html">Cv</a>
-            <a href="./workspace.html">Praocvný priestor</a>
-            <a href="./schedule.html">Rozvrh</a>
-            <a href="./map.html">Kde ma nájdete</a>
-        </nav>
+    <img src="../favicon.png" alt="BM" loading="lazy" width="64" height="64>
+    <h1>študentka aplikovanej informatiky, zaujímajú ma webové technológie</h1>
+    <nav class="nav">
+      <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation">
+          ☰
+      </button>
+      <ul class="nav__list" id="nav-menu">
+          <li><a href="../index.html" class="nav__link">O mne</a></li>
+          <li><a href="./cv.html" class="nav__link">CV</a></li>
+          <li><a href="./workspace.html" class="nav__link nav__link--active">Pracovný priestor</a></li>
+          <li><a href="./schedule.html" class="nav__link">Rozvrh</a></li>
+          <li><a href="./map.html" class="nav__link">Kde ma nájdete</a></li>
+      </ul>
+    </nav>
     </header>
   <main>
-    <h1>Olejové farby</h1>
+    <h2>Môj pracovný priestor</h2>
 
     <figure class="hotspot-image">
-      <img src="../img/farby.jpg" alt="6 tub olejovych farieb" width="1200" height="800">
+      <img src="../img/my-table.jpeg" alt="môj pracovný stolík" loading="lazy" width="1200" height="800">
 
-      <div class="hotspot" style="--x: 14%; --y: 30%">
-        <button class="hotspot__dot" type="button" aria-label="Bilela farba"></button>
-        <div class="hotspot__panel">
-          <h2>Biela</h2>
-          <p>Laik by povedal že existuje len jeden druh bielej, no opak je však pravdou.</p>
-        </div>
-      </div>
-
-      <div class="hotspot" style="--x: 57%; --y: 30%">
-        <button class="hotspot__dot" type="button" aria-label="orandžová farba"></button>
-        <div class="hotspot__panel">
-          <h2>oranžová</h2>
-          <p>Táto zdanlivo oranžova farba sa ulemcami casto nazýva inými menami, napríklad okrová, alebo scarlet.</p>
-        </div>
-      </div>
-
-      <div class="hotspot" style="--x: 96%; --y: 80%">
-        <button class="hotspot__dot" type="button" aria-label="Riedidlo"></button>
-        <div class="hotspot__panel">
-          <h2>Riedidlo</h2>
-          <p>Na prácu s olejovými farbami je potrebné mať správne riedidlo, aby sme mohli dostat tu správnu konzistenciu.</p>
-        </div>
-      </div>
+      <div id="hotspot-container" class="hotspot-container"></div>
+      
     </figure>
 
-    <p>Text pod obrázkom, aby bolo vidieť, čo sa deje s obsahom pod ním.</p>
   </main>
    <footer>
+        <address>
+      <p>Kontakt: <a href="mailto:barbora.mrkvicka@centrum.sk">barbora.mrkvicka@centrum.sk</a> | <a href="tel:+421916534967">+421 916 534 967</a></p>
+      <p>&copy; 2026 Barbora Moncoľová — Webové technológie I</p>
+    </address>
+    </footer>
         <p>Webové technológie I. - 2026</p>
     </footer>
+    <script src="../js/script.js"></script>
 </body>
 </html>
