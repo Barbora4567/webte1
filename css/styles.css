@@ -1,0 +1,125 @@
+@font-face {
+  font-family: "Outfit";
+  src: url("../fonts/Outfit-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  /* Farby značky */
+  --color-primary: #ff8274;
+  --color-primary-dark: #e06a5c;
+  --color-secondary: #d9ff00;
+  --color-secondary-dark: #b8d900;
+
+  /* Neutrálne farby a plochy */
+  --color-text: #212529;
+  --color-text-muted: #6c757d;
+  --color-text-alt: #ffffff;
+  --color-bg: #f8f9fa;
+  --color-surface: #ffffff;
+  --color-border: #e9ecef;
+
+  /* Rozmery a orámovanie */
+  --border-radius: 12px;
+  --radius-sm: 6px;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --border-width: 1px;
+}
+
+/* Základné nastavenie tela stránky */
+body {
+  font-family: "Outfit", sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* Hlavička */
+header {
+  border-bottom: 2px solid var(--color-primary) !important;
+}
+
+header h1 {
+  color: var(--color-primary) !important;
+}
+
+/* Prepis Bootstrap primárnych tlačidiel na vlastnú farbu */
+.btn-primary {
+  background-color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  color: var(--color-text-alt) !important;
+  font-weight: 500;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--color-primary-dark) !important;
+  border-color: var(--color-primary-dark) !important;
+}
+
+.btn-outline-primary {
+  color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary[aria-pressed="true"] {
+  background-color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  color: var(--color-text-alt) !important;
+}
+
+/* Karty reštaurácií a bloky */
+.card {
+  border-radius: var(--border-radius) !important;
+  background-color: var(--color-surface);
+  border: var(--border-width) solid var(--color-border) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06) !important;
+}
+
+.card-header {
+  border-top-left-radius: var(--border-radius) !important;
+  border-top-right-radius: var(--border-radius) !important;
+  border-bottom: var(--border-width) solid var(--color-border) !important;
+}
+
+/* Textové odkazy a akcenty */
+a {
+  color: var(--color-primary-dark);
+}
+
+a:hover {
+  color: var(--color-primary);
+}
+
+/* Bootstrap switch prepínače */
+.form-check-input:checked {
+  background-color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+}
+
+/* Položky menu v kartách */
+#schedule ul li {
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+#schedule .badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
