@@ -6,59 +6,35 @@
 }
 
 :root {
-  /* Farby značky */
-  --color-primary: #ff8274;
-  --color-primary-dark: #e06a5c;
-  --color-secondary: #d9ff00;
-  --color-secondary-dark: #b8d900;
-
-  /* Neutrálne farby a plochy */
+  --color-primary: #cd9c96;
+  --color-primary-dark: #e86d5e;
   --color-text: #212529;
   --color-text-muted: #6c757d;
-  --color-text-alt: #ffffff;
-  --color-bg: #f8f9fa;
+  --color-bg: #f5f6f8;
   --color-surface: #ffffff;
-  --color-border: #e9ecef;
-
-  /* Rozmery a orámovanie */
+  --color-border: #edf0f2;
   --border-radius: 12px;
-  --radius-sm: 6px;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 2rem;
-  --border-width: 1px;
 }
 
-/* Základné nastavenie tela stránky */
 body {
   font-family: "Outfit", sans-serif;
   color: var(--color-text);
   background-color: var(--color-bg);
-  margin: 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-main {
-  flex: 1;
-}
-
 /* Hlavička */
-header {
-  border-bottom: 2px solid var(--color-primary) !important;
-}
-
 header h1 {
   color: var(--color-primary) !important;
 }
 
-/* Prepis Bootstrap primárnych tlačidiel na vlastnú farbu */
+/* Tlačidlá Bootstrapu */
 .btn-primary {
   background-color: var(--color-primary) !important;
   border-color: var(--color-primary) !important;
-  color: var(--color-text-alt) !important;
-  font-weight: 500;
+  color: #fff !important;
 }
 
 .btn-primary:hover,
@@ -76,50 +52,84 @@ header h1 {
 .btn-outline-primary[aria-pressed="true"] {
   background-color: var(--color-primary) !important;
   border-color: var(--color-primary) !important;
-  color: var(--color-text-alt) !important;
+  color: #fff !important;
 }
 
-/* Karty reštaurácií a bloky */
+/* Skupina tlačidiel pre dni */
+#day-tabs .btn {
+  padding: 0.6rem 1rem;
+  font-weight: 500;
+  border-color: #dee2e6 !important;
+}
+
+#day-tabs .btn.btn-primary {
+  border-color: var(--color-primary) !important;
+}
+
+.header-nav{
+  list-style: none;
+}
+/* Karty */
 .card {
   border-radius: var(--border-radius) !important;
-  background-color: var(--color-surface);
-  border: var(--border-width) solid var(--color-border) !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06) !important;
+  border: 1px solid var(--color-border) !important;
 }
 
 .card-header {
   border-top-left-radius: var(--border-radius) !important;
   border-top-right-radius: var(--border-radius) !important;
-  border-bottom: var(--border-width) solid var(--color-border) !important;
+  background-color: #fff !important;
+  border-bottom: 1px solid var(--color-border) !important;
 }
 
-/* Textové odkazy a akcenty */
-a {
-  color: var(--color-primary-dark);
-}
-
-a:hover {
-  color: var(--color-primary);
-}
-
-/* Bootstrap switch prepínače */
+/* Prepínače reštaurácií */
 .form-check-input:checked {
   background-color: var(--color-primary) !important;
   border-color: var(--color-primary) !important;
 }
 
-/* Položky menu v kartách */
+/* Zoznam jedál */
 #schedule ul li {
-  font-size: 0.92rem;
-  line-height: 1.4;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--color-border) !important;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75rem;
 }
 
+#schedule ul li:last-child {
+  border-bottom: none !important;
+}
+
+/* Badge kategórií */
 #schedule .badge {
-  font-size: 0.75rem;
   font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+  padding: 0.35em 0.6em;
+  border-radius: 6px;
+}
+
+/* Polievka vs Hlavné jedlo vs Špeciál */
+.badge-soup {
+  background-color: #e0f2fe !important;
+  color: #0369a1 !important;
+}
+
+.badge-meal {
+  background-color: #f1f5f9 !important;
+  color: #334155 !important;
+}
+
+.badge-special {
+  background-color: #fef3c7 !important;
+  color: #92400e !important;
+}
+
+/* Ceny */
+.dish-price {
+  color: var(--color-primary-dark);
+  font-weight: 700;
+  font-size: 0.95rem;
 }

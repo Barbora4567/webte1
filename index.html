@@ -18,27 +18,69 @@
 </head>
 <body>
   <!-- Page content here -->
-   <header>
-    <h1>Obedové menu v okolí fakulty</h1>
-    <nav>
+   <header class="bg-white border-bottom shadow-sm py-3 mb-4">
+
+    <h1 class="bi bi-egg-fried me-2">Obedové menu v okolí fakulty</h1>
+    <nav  class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
         <ul>
-            <li><a href="pages/about.html" class="nav-link">O projekte</a></li>
+            <li><a href="#about" class="btn btn-outline-secondary btn-sm rounded-pill px-3">O projekte</a></li>
         </ul>
     </nav>
    </header>
-   <main>
+   <main class="container mb-5">
+    <div class="card border-0 shadow-sm p-3 mb-4 bg-white d-flex flex-wrap justify-content-between align-items-center gap-3">
 
-    <button type="button" id="updateData">Aktualizovať menu</button>
-    <button type="button" id="deleteSavedData">Vymazať uložené dáta</button>
-    <p>Posledná aktualizácia: <div id="last-update"></div></p>
+    <button type="button" id="updateData" class="btn btn-primary btn-sm px-3">Aktualizovať menu</button>
+    <button type="button" id="deleteSavedData" class="btn btn-outline-danger btn-sm px-3">Vymazať uložené dáta</button>
+    <p>Posledná aktualizácia: <span id="last-update"></span></p>
 
 
-   <h2 id="day-tabs" class="day-tabs" aria-label="Dni v týždni">dni</h2>
-    <section id="schedule" class="schedule"></section>
+    <section class="card mb-3 p-3 bg-white border-0 shadow-sm" aria-label="Filtre reštaurácií">
+      <p class="fw-bold small mb-2 d-block">Zobraziť reštaurácie:</p>
+      <div class="d-flex flex-wrap gap-3">
+        <div class="form-check form-switch">
+          <input class="form-check-input filter-restaurant" type="checkbox" id="filter-eat" data-rest="eat-and-meet" checked>
+          <label class="form-check-label small" for="filter-eat">Eat & Meet</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input filter-restaurant" type="checkbox" id="filter-freefood" data-rest="free-food" checked>
+          <label class="form-check-label small" for="filter-freefood">FreeFood</label>
+        </div>
+        <div class="form-check form-switch">
+          <input class="form-check-input filter-restaurant" type="checkbox" id="filter-whitedragon" data-rest="white-dragon" checked>
+          <label class="form-check-label small" for="filter-whitedragon">White Dragon</label>
+        </div>
+      </div>
+    </section>
 
+</div>
+
+    <div id="loader" class="text-center py-5 d-none">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Načítavam...</span>
+    </div>
+    <p class="mt-2 text-muted fw-semibold">Sťahujem a spracovávam aktuálne menu...</p>
+    </div>
+
+    <section class="mb-4">
+   <h2 id="day-tabs" class="day-tabs btn-group w-100 flex-wrap shadow-sm rounded" aria-label="Dni v týždni">dni</h2>
+   </section> 
+
+   <div id="schedule" class="schedule row g-4"></div>
+
+    <section>
+        <h2 id="about" class="h4 fw-bold mb-3">O projekte</h2>
+        <p class="text-muted">Aplikácia asynchrónne sťahuje denné menu reštaurácií v okolí fakulty (Eat & Meet, FreeFood, White Dragon) a spracováva ich cez <code>DOMParser</code>.</p>
+        <h3 class="h6 fw-bold mt-3">Použité zdroje:</h3>
+        <ul class="text-muted small mb-0">
+          <li>Font: <a href="https://fonts.google.com/specimen/Outfit" target="_blank" rel="noopener">Outfit</a></li>
+          <li>Ikona: <a href="https://cdn-icons-png.flaticon.com/512/575/575577.png" target="_blank" rel="noopener">Flaticon</a></li>
+          <li>Knižnice: Bootstrap 5 (CSS), jQuery (JS)</li>
+        </ul>
+    </section>
    </main>
-   <footer>
-
-   </footer>
+   <footer class="container bg-white border-top py-3 mt-auto text-center text-muted small">
+      &copy; 2026 Obedové menu v okolí fakulty — FEI STU
+  </footer>
 </body>
 </html>
