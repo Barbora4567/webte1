@@ -7,3 +7,7 @@ SIL OPEN FONT LICENSE Version 1.1 - 26 February 2007
 
 ## favicon
 https://www.flaticon.com/kr/free-icon/fast-food_575577
+
+
+## Použitie AI nástrojov
+AI nástroje boli použité výhradne na konzultačné a edukatívne účely.
