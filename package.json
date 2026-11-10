@@ -9,6 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fullcalendar/core": "^6.1.22",
+    "@fullcalendar/daygrid": "^6.1.22",
+    "@fullcalendar/interaction": "^6.1.22",
+    "@fullcalendar/timegrid": "^6.1.22",
+    "@fullcalendar/vue3": "^6.1.22",
     "@popperjs/core": "^2.11.8",
     "axios": "^1.21.1",
     "bootstrap": "^5.3.8",
