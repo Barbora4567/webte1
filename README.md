@@ -1,7 +1,7 @@
 # WEBTE1 — Zadanie č. 3: Môj TODO List
 
 * **Meno a priezvisko:** Barbora Moncoľová
-* **Odkaz na web:** [\[odkaz na školský server\]](https://webte1.fei.stuba.sk/~xmoncolova/zadanie3/)
+* **Odkaz na web:** [odkaz na školský server](https://webte1.fei.stuba.sk/~xmoncolova/zadanie3/)
 
 ## Stručný opis aplikácie
 **Môj TODO List** je responzívna webová aplikácia určená na správu a časové plánovanie osobných úloh. Aplikácia umožňuje vytvárať, upravovať, filtrovať, vyhľadávať a odstraňovať úlohy, označovať ich ako dokončené alebo znovu otvorené a prehľadne ich zobrazovať v integrovanom kalendári (mesačný, týždenný a denný pohľad). Všetky zmeny sa v reálnom čase synchronizujú s externým REST API serverom (`https://wt1zadanie.iolab.sk`).
