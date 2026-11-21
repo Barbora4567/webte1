@@ -17,7 +17,7 @@ const emit = defineEmits(['select-date', 'click-event'])
 const calendarEvents = computed(() => {
   return props.todos.map(todo => ({
     id: String(todo.id),
-    title: todo.title,
+    title: todo.is_finished ? `✓ ${todo.title}` : todo.title,
     start: todo.date_from,
     end: todo.date_to,
     backgroundColor: todo.is_finished ? '#198754' : '#0d6efd',
@@ -31,6 +31,12 @@ const calendarEvents = computed(() => {
 
 const calendarOptions = computed(() => ({
   plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+  displayEventTime: true,
+  eventTimeFormat: {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false
+  },
   initialView: 'dayGridMonth',
   locale: 'sk',
   firstDay: 1,
@@ -78,5 +84,19 @@ const calendarOptions = computed(() => ({
 .fc-event {
   cursor: pointer;
   padding: 1px 3px;
+}
+
+@media (max-width: 768px) {
+  .fc-header-toolbar {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .fc-toolbar-title {
+    font-size: 1.05rem !important;
+  }
+  .fc-button {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.8rem !important;
+  }
 }
 </style>
