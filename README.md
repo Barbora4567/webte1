@@ -1,41 +1,22 @@
-# zadanie3
+# WEBTE1 — Zadanie č. 3: Môj TODO List
 
-This template should help get you started developing with Vue 3 in Vite.
+* **Meno a priezvisko:** Barbora Moncoľová
+* **Odkaz na web:** [\[odkaz na školský server\]](https://webte1.fei.stuba.sk/~xmoncolova/zadanie3/)
+
+## Stručný opis aplikácie
+**Môj TODO List** je responzívna webová aplikácia určená na správu a časové plánovanie osobných úloh. Aplikácia umožňuje vytvárať, upravovať, filtrovať, vyhľadávať a odstraňovať úlohy, označovať ich ako dokončené alebo znovu otvorené a prehľadne ich zobrazovať v integrovanom kalendári (mesačný, týždenný a denný pohľad). Všetky zmeny sa v reálnom čase synchronizujú s externým REST API serverom (`https://wt1zadanie.iolab.sk`).
+
+## Použité technológie
+* **Frontend framework:** Vue 3 (Composition API, `<script setup>`)
+* **Kalendárová knižnica:** FullCalendar v6
+* **Komunikácia s REST API:** Axios
+* **Štýlovanie a ikony:** Bootstrap 5, Bootstrap Icons
 
 ## Použitie AI nástrojov
 AI nástroje boli použité na konzultačné a edukatívne účely.
 
-## Recommended IDE Setup
-
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+## Postup inštalácie závislostí
+1. Otvor terminál v koreňovom priečinku projektu (tam, kde sa nachádza súbor `package.json`).
+2. Nainštaluj všetky potrebné balíčky a závislosti príkazom:
+   ```sh
+   npm install
