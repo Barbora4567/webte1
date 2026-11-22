@@ -14,11 +14,10 @@ const isSubmitting = ref(false)
 const errorMessage = ref('')
 const showAbout = ref(false)
 
-// Predvyplnené dátumy z kalendára a modál úpravy
 const calendarPreset = ref(null)
 const editingTodo = ref(null)
 
-// Toast notifikácie
+// Toast notification
 const toastMessage = ref('')
 let toastTimeout = null
 
@@ -180,7 +179,7 @@ function handleCalendarDateSelect(selectInfo) {
       <button type="button" class="btn-close" @click="errorMessage = ''"></button>
     </div>
 
-    <!-- Prihlásenie -->
+    <!-- log in -->
     <div v-if="!currentStudent" class="card shadow-sm p-4 mb-4 mx-auto" style="max-width: 480px;">
       <h2 class="h5 mb-3">Identifikácia študenta</h2>
       <div class="input-group mb-3">
@@ -192,7 +191,7 @@ function handleCalendarDateSelect(selectInfo) {
       <div v-if="errorMessage" class="alert alert-danger py-2 small mb-0">{{ errorMessage }}</div>
     </div>
 
-    <!-- Hlavný obsah -->
+    <!-- main -->
     <div v-else class="row g-4">
       <div class="col-12 col-xl-3">
         <div class="card shadow-sm border-0 mb-4">
@@ -224,7 +223,6 @@ function handleCalendarDateSelect(selectInfo) {
       </div>
     </div>
 
-    <!-- Modál pre detail a úpravu (využíva ten istý TodoForm!) -->
     <div v-if="editingTodo" class="modal fade show d-block" style="background: rgba(0,0,0,0.5);" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0 shadow">
@@ -246,7 +244,7 @@ function handleCalendarDateSelect(selectInfo) {
       </div>
     </div>
 
-    <!-- Toast notifikácia -->
+    <!-- Toast notification -->
     <div v-if="toastMessage" class="position-fixed bottom-0 end-0 p-3" style="z-index: 1080;">
       <div class="toast show align-items-center text-bg-success border-0 shadow">
         <div class="d-flex">

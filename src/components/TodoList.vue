@@ -43,7 +43,7 @@ function isOverdue(todo) {
 
 <template>
   <div>
-    <!-- Filtre a zoradenie -->
+    <!-- Filters -->
     <div class="card shadow-sm border-0 p-3 mb-3">
       <div class="row g-2 align-items-center">
         <div class="col-12 col-md-4">
@@ -75,7 +75,7 @@ function isOverdue(todo) {
       </div>
     </div>
 
-    <!-- Zoznam úloh -->
+    <!-- list of tasks -->
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h2 class="h5 fw-bold mb-0">Zoznam úloh</h2>
       <span v-if="isLoading" class="text-primary small">

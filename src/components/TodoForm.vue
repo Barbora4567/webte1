@@ -2,7 +2,7 @@
 import { ref, watch } from 'vue'
 
 const props = defineProps({
-  // Ak je null, formulár vytvára novú úlohu; ak obsahuje objekt úlohy, upravuje ho
+  // if null, it makes new object. 
   initialData: {
     type: Object,
     default: null
@@ -61,7 +61,6 @@ function initForm() {
   }
 }
 
-// Sledujeme zmenu initialData (napr. kliknutie do kalendára alebo otvorenie modálu)
 watch(() => props.initialData, initForm, { immediate: true, deep: true })
 
 function validate() {
@@ -117,7 +116,7 @@ function handleSubmit() {
 
   emit('submit', payload)
 
-  // Ak sme v režime pridávania, po odoslaní formulár zresetujeme
+  // if adding, reset formular after sending
   if (!props.isEditMode) {
     initForm()
   }
@@ -176,13 +175,13 @@ function handleSubmit() {
       </div>
     </div>
 
-    <!-- Stav dokončenia sa zobrazuje iba pri úprave existujúcej úlohy -->
+    <!-- state 'finished' shows only when editing existing todos-->
     <div v-if="isEditMode" class="form-check mb-3">
       <input id="editFinishedCheck" v-model="form.is_finished" class="form-check-input" type="checkbox">
       <label class="form-check-label" for="editFinishedCheck">Označiť ako dokončené</label>
     </div>
 
-    <!-- Tlačidlá pre modál úpravy -->
+    <!-- edit buttons -->
     <div v-if="isEditMode" class="d-flex justify-content-between pt-2 border-top">
       <button type="button" class="btn btn-outline-danger btn-sm" @click="emit('delete')">
         <i class="bi bi-trash me-1"></i>Zmazať
@@ -195,7 +194,7 @@ function handleSubmit() {
       </div>
     </div>
 
-    <!-- Tlačidlo pre nový záznam -->
+    <!-- new todo button -->
     <button v-else type="submit" class="btn btn-primary w-100" :disabled="isSubmitting">
       <span v-if="isSubmitting" class="spinner-border spinner-border-sm me-1"></span>
       {{ isSubmitting ? 'Ukladám...' : 'Vytvoriť úlohu' }}
